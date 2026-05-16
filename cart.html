@@ -793,8 +793,9 @@ footer strong { color: white; }
     const giftFee = giftAdded ? 15 : 0;
     const total = subtotal + giftFee - discount;
 
-    document.getElementById('subtotal-val').textContent = subtotal + ' ريال';
-    document.getElementById('total-val').textContent = total + ' ريال';
+    document.getElementById('subtotal-val').innerHTML = subtotal + ' <span style="font-family: CamelThin, Tajawal, sans-serif">ريال</span>';
+document.getElementById('total-val').innerHTML = total + ' <span style="font-family: CamelThin, Tajawal, sans-serif">ريال</span>';
+
   }
 
   function toggleGift() {
