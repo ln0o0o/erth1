@@ -1,0 +1,1280 @@
+<!DOCTYPE html>
+
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>إرث | متجر المنتجات التراثية</title>
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <style>
+    /* خط الإبل — ملف محلي لازم يكون بنفس المجلد */
+    @font-face {
+      font-family: 'CamelBold';
+      src: url('TheYearofTheCamel-Medium.otf') format('opentype');
+      font-weight: 700;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'CamelThin';
+      src: url('TheYearofTheCamel-Thin.otf') format('opentype');
+      font-weight: 300;
+      font-display: swap;
+    }
+    
+
+:root {
+  --burgundy:    #7a2e35;
+  --burgundy-dk: #5c1f25;
+  --burgundy-lt: #a84d56;
+  --cream:       #f7f2e8;
+  --cream-dk:    #ede8da;
+  --sand:        #c9b99a;
+  --text-dark:   #2b1e1e;
+  --text-mid:    #5a403f;
+  --text-light:  #9a8070;
+  --white:       #ffffff;
+}
+
+/* العناوين الكبيرة — خط الإبل العريض */
+h1, h2, h3,
+.hero-title,
+.section-title,
+.brand-text h1,
+.brand-name,
+.links-title,
+.card-body h3,
+.about-description {
+  font-family: 'CamelBold', 'Tajawal', sans-serif !important;
+}
+
+/* النصوص المتوسطة والصغيرة — خط الإبل النحيف */
+body, p, a, li, span, button, input,
+.hero-desc, .hero-subtitle, .hero-badge,
+.nav-links a, .section-label,
+.card-body p, .faq summary, .faq p,
+.contact-info p {
+  font-family: 'CamelThin', 'Tajawal', sans-serif;
+}
+
+/* أيقونات فونت أوسم — لا تتأثر بالخط */
+.fa, .fas, .far, .fab, .fa-solid, .fa-brands, .fa-regular {
+  font-family: "Font Awesome 6 Free", "Font Awesome 6 Brands" !important;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--cream);
+  color: var(--text-dark);
+  font-family: 'Tajawal', sans-serif;
+  font-size: 16px;
+  line-height: 1.7;
+  overflow-x: hidden;
+}
+
+/* ===== HEADER ===== */
+.site-header {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 60px;
+  height: 72px;
+  background: rgba(247, 242, 232, 0.92);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid rgba(122, 46, 53, 0.12);
+  transition: box-shadow 0.3s;
+}
+
+.site-header.scrolled {
+  box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+}
+
+.logo {
+  width: 44px;
+  height: 44px;
+  object-fit: contain;
+  border-radius: 10px;
+  border: 1.5px solid var(--cream-dk);
+  background: white;
+  padding: 4px;
+}
+
+.brand-text h1 {
+  font-family: 'Amiri', serif;
+  font-size: 26px;
+  color: var(--burgundy);
+  line-height: 1;
+}
+
+.brand-text p {
+  font-size: 11px;
+  color: var(--text-light);
+  letter-spacing: 0.5px;
+}
+
+.nav-links {
+  display: flex;
+  gap: 36px;
+  list-style: none;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: var(--text-mid);
+  font-size: 15px;
+  font-weight: 500;
+  position: relative;
+  transition: color 0.3s;
+}
+
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: -3px; right: 0;
+  width: 0; height: 2px;
+  background: var(--burgundy);
+  transition: width 0.3s;
+}
+
+.nav-links a:hover { color: var(--burgundy); }
+.nav-links a:hover::after { width: 100%; }
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.cart-link {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  text-decoration: none;
+  color: var(--burgundy);
+  font-size: 15px;
+  font-weight: 600;
+  background: rgba(122, 46, 53, 0.08);
+  padding: 8px 16px;
+  border-radius: 30px;
+  transition: background 0.3s, transform 0.2s;
+}
+
+.cart-link:hover {
+  background: rgba(122, 46, 53, 0.15);
+  transform: translateY(-1px);
+}
+
+#cart-count {
+  background: var(--burgundy);
+  color: white;
+  border-radius: 50%;
+  width: 20px; height: 20px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+/* ===== HERO SLIDER ===== */
+.hero {
+  height: 100vh;
+  min-height: 600px;
+  position: relative;
+  overflow: hidden;
+}
+
+.slides-container {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.slides-container {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.7s ease;
+}
+
+.slide {
+  min-width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  flex-shrink: 0;
+  position: relative;
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(20, 8, 8, 0.38) 0%,
+    rgba(20, 8, 8, 0.52) 60%,
+    rgba(10, 2, 2, 0.75) 100%
+  );
+  z-index: 1;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 3;
+  max-width: 820px;
+  padding: 20px;
+  animation: fadeUp 0.9s ease both;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.hero-badge {
+  display: inline-block;
+  border: 1px solid rgba(255,255,255,0.4);
+  color: rgba(255,255,255,0.88);
+  padding: 7px 20px;
+  border-radius: 30px;
+  font-size: 13px;
+  letter-spacing: 2px;
+  margin-bottom: 24px;
+  backdrop-filter: blur(6px);
+}
+
+.hero-title {
+  font-family: 'Amiri', serif;
+  font-size: clamp(58px, 10vw, 108px);
+  color: white;
+  line-height: 1.1;
+  margin-bottom: 12px;
+  text-shadow: 0 4px 30px rgba(0,0,0,0.4);
+}
+
+.hero-subtitle {
+  font-size: 13px;
+  letter-spacing: 5px;
+  color: rgba(255,255,255,0.6);
+  margin-bottom: 20px;
+  text-transform: uppercase;
+}
+
+.hero-desc {
+  font-size: 18px;
+  color: rgba(255,255,255,0.82);
+  max-width: 480px;
+  margin: 0 auto 36px;
+  line-height: 1.8;
+}
+
+.hero-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--burgundy);
+  color: white;
+  text-decoration: none;
+  padding: 15px 36px;
+  border-radius: 50px;
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  transition: background 0.3s, transform 0.2s, box-shadow 0.3s;
+  box-shadow: 0 8px 30px rgba(122, 46, 53, 0.5);
+}
+
+.hero-cta:hover {
+  background: var(--burgundy-dk);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 40px rgba(122, 46, 53, 0.65);
+}
+
+/* نقاط التنقل */
+.slider-dots {
+  position: absolute;
+  bottom: 36px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  display: flex;
+  gap: 10px;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.4);
+  cursor: pointer;
+  transition: all 0.3s;
+  border: 1.5px solid rgba(255,255,255,0.6);
+}
+
+.dot.active {
+  background: white;
+  width: 28px;
+  border-radius: 8px;
+}
+
+/* أسهم */
+.slider-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  background: rgba(255,255,255,0.15);
+  border: 1.5px solid rgba(255,255,255,0.3);
+  color: white;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  font-size: 16px;
+  cursor: pointer;
+  backdrop-filter: blur(6px);
+  transition: background 0.3s, transform 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.slider-arrow:hover {
+  background: rgba(255,255,255,0.28);
+  transform: translateY(-50%) scale(1.08);
+}
+
+.slider-prev { right: 28px; }
+.slider-next { left: 28px; }
+
+.hero-scroll {
+  position: absolute;
+  bottom: 30px;
+  right: 50%;
+  transform: translateX(50%);
+  z-index: 10;
+  color: rgba(255,255,255,0.45);
+  font-size: 20px;
+  animation: bounce 2s infinite;
+  display: none; /* مخفي عشان عندنا dots */
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateX(50%) translateY(0); }
+  50%       { transform: translateX(50%) translateY(8px); }
+}
+
+/* ===== SECTION TITLES ===== */
+.section-header {
+  text-align: center;
+  margin-bottom: 56px;
+}
+
+.section-label {
+  display: inline-block;
+  color: var(--burgundy);
+  font-size: 12px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+  opacity: 0.7;
+}
+
+.section-title {
+  font-family: 'Amiri', serif;
+  font-size: clamp(32px, 5vw, 48px);
+  color: var(--text-dark);
+  line-height: 1.2;
+}
+
+.section-line {
+  width: 50px;
+  height: 3px;
+  background: var(--burgundy);
+  margin: 16px auto 0;
+  border-radius: 2px;
+}
+
+/* ===== PRODUCTS ===== */
+.products {
+  padding: 100px 60px;
+  background: var(--cream);
+}
+
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 32px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.card {
+  background: white;
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 50px rgba(122, 46, 53, 0.15);
+}
+
+.card-img-wrap {
+  position: relative;
+  overflow: hidden;
+  height: 260px;
+}
+
+.card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.card:hover img { transform: scale(1.07); }
+
+.card-badge {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  background: var(--burgundy);
+  color: white;
+  font-size: 12px;
+  padding: 4px 12px;
+  border-radius: 20px;
+}
+
+.card-body {
+  padding: 24px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.card-body h3 {
+  font-family: 'Amiri', serif;
+  font-size: 26px;
+  color: var(--text-dark);
+  margin-bottom: 8px;
+}
+
+.card-body p {
+  font-size: 14px;
+  color: var(--text-light);
+  line-height: 1.7;
+  flex: 1;
+  margin-bottom: 18px;
+}
+
+.card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: auto;
+}
+
+.card-price {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--burgundy);
+}
+
+.card-price span {
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--text-light);
+  margin-right: 4px;
+}
+
+.add-btn {
+  background: var(--burgundy);
+  color: white;
+  border: none;
+  padding: 10px 22px;
+  border-radius: 30px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: 'Tajawal', sans-serif;
+  transition: background 0.3s, transform 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.add-btn:hover {
+  background: var(--burgundy-dk);
+  transform: scale(1.04);
+}
+
+.add-btn.added {
+  background: #2d7a4f;
+}
+
+/* تمييز المنتج لما الروبوت يقترحه */
+.card.highlighted {
+  outline: 3px solid var(--burgundy);
+  box-shadow: 0 0 0 6px rgba(122, 46, 53, 0.15), 0 20px 50px rgba(122, 46, 53, 0.2);
+  transform: translateY(-10px) scale(1.02);
+  transition: all 0.5s ease;
+}
+
+.card.highlighted::before {
+  content: '← هذا هو المنتج المقترح';
+  position: absolute;
+  top: -38px;
+  right: 0;
+  background: var(--burgundy);
+  color: white;
+  font-size: 13px;
+  padding: 6px 14px;
+  border-radius: 20px;
+  white-space: nowrap;
+  font-family: 'CamelThin', 'Tajawal', sans-serif;
+  z-index: 10;
+}
+
+.card { position: relative; }
+.faq {
+  padding: 90px 60px;
+  background: var(--cream-dk);
+}
+
+.faq-list {
+  max-width: 720px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.faq details {
+  background: white;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid rgba(122, 46, 53, 0.1);
+  transition: box-shadow 0.3s;
+}
+
+.faq details[open] {
+  box-shadow: 0 8px 30px rgba(122, 46, 53, 0.1);
+}
+
+.faq summary {
+  padding: 20px 24px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text-dark);
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: color 0.3s;
+}
+
+.faq summary:hover { color: var(--burgundy); }
+
+.faq summary::after {
+  content: '+';
+  font-size: 22px;
+  color: var(--burgundy);
+  transition: transform 0.3s;
+}
+
+.faq details[open] summary::after { transform: rotate(45deg); }
+
+.faq details p {
+  padding: 0 24px 20px;
+  font-size: 15px;
+  color: var(--text-mid);
+  line-height: 1.8;
+  border-top: 1px solid var(--cream-dk);
+  padding-top: 14px;
+}
+
+/* ===== ABOUT ===== */
+.about-section {
+  padding: 100px 60px;
+  background: var(--cream);
+  text-align: center;
+}
+
+.about-inner {
+  max-width: 860px;
+  margin: 0 auto;
+}
+
+.about-logo-wrap {
+  width: 80px;
+  height: 80px;
+  background: white;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 28px;
+  box-shadow: 0 8px 24px rgba(122,46,53,0.12);
+  border: 1px solid var(--cream-dk);
+}
+
+.about-logo-wrap img {
+  width: 60px;
+  object-fit: contain;
+}
+
+.brand-name {
+  font-family: 'Amiri', serif;
+  font-size: 52px;
+  color: var(--burgundy);
+  margin-bottom: 18px;
+}
+
+.about-description {
+  font-size: 18px;
+  color: var(--text-mid);
+  line-height: 1.9;
+  max-width: 520px;
+  margin: 0 auto 48px;
+}
+
+.divider {
+  width: 60px;
+  height: 1px;
+  background: var(--sand);
+  margin: 40px auto;
+}
+
+.links-title {
+  font-family: 'Amiri', serif;
+  font-size: 28px;
+  color: var(--burgundy);
+  margin-bottom: 24px;
+}
+
+.important-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 44px;
+}
+
+.important-links a {
+  text-decoration: none;
+  color: var(--burgundy);
+  font-size: 15px;
+  font-weight: 600;
+  border: 1.5px solid rgba(122, 46, 53, 0.3);
+  padding: 9px 22px;
+  border-radius: 30px;
+  transition: background 0.3s, color 0.3s;
+}
+
+.important-links a:hover {
+  background: var(--burgundy);
+  color: white;
+}
+
+.contact-info {
+  margin-bottom: 36px;
+}
+
+.contact-info h3 {
+  font-family: 'Amiri', serif;
+  font-size: 26px;
+  color: var(--text-dark);
+  margin-bottom: 14px;
+}
+
+.contact-info p {
+  font-size: 16px;
+  color: var(--text-mid);
+  margin: 6px 0;
+}
+
+.social-icons {
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+}
+
+.social-icons a {
+  width: 46px;
+  height: 46px;
+  border: 1.5px solid rgba(122, 46, 53, 0.35);
+  border-radius: 50%;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--burgundy);
+  font-size: 18px;
+  text-decoration: none;
+  transition: background 0.3s, color 0.3s, transform 0.2s;
+}
+
+.social-icons a:hover {
+  background: var(--burgundy);
+  color: white;
+  transform: translateY(-3px);
+}
+
+/* ===== FOOTER ===== */
+footer {
+  background: var(--burgundy-dk);
+  color: rgba(255,255,255,0.75);
+  text-align: center;
+  padding: 22px;
+  font-size: 13px;
+  letter-spacing: 0.5px;
+}
+
+footer strong { color: white; }
+
+/* ===== CHAT BOT ===== */
+.chat-btn {
+  position: fixed;
+  bottom: 28px;
+  left: 28px;
+  width: 56px;
+  height: 56px;
+  border: none;
+  border-radius: 50%;
+  background: var(--burgundy);
+  color: white;
+  font-size: 22px;
+  cursor: pointer;
+  z-index: 999;
+  box-shadow: 0 8px 28px rgba(122, 46, 53, 0.45);
+  transition: transform 0.3s, box-shadow 0.3s;
+  animation: floatBot 3s ease-in-out infinite;
+}
+
+@keyframes floatBot {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-6px); }
+}
+
+.chat-btn:hover { box-shadow: 0 12px 36px rgba(122, 46, 53, 0.6); animation: none; transform: scale(1.08); }
+
+.chat-box {
+  display: none;
+  position: fixed;
+  bottom: 96px;
+  left: 28px;
+  width: 300px;
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.18);
+  overflow: hidden;
+  z-index: 999;
+  animation: slideUp 0.3s ease;
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.chat-header {
+  background: var(--burgundy);
+  color: white;
+  padding: 16px 18px;
+  font-weight: 700;
+  font-size: 17px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.chat-body {
+  padding: 18px;
+  text-align: right;
+}
+
+.bot-msg {
+  color: var(--text-mid);
+  font-size: 15px;
+  margin: 4px 0 12px;
+  line-height: 1.6;
+}
+
+.bot-msg:first-child { font-weight: 700; color: var(--text-dark); }
+
+.chat-options {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.chat-body button {
+  width: 100%;
+  padding: 11px 16px;
+  border: 1.5px solid rgba(122, 46, 53, 0.2);
+  background: white;
+  color: var(--burgundy);
+  border-radius: 12px;
+  cursor: pointer;
+  font-size: 14px;
+  font-family: 'Tajawal', sans-serif;
+  font-weight: 600;
+  text-align: right;
+  transition: background 0.2s, color 0.2s;
+}
+
+.chat-body button:hover {
+  background: var(--burgundy);
+  color: white;
+}
+
+#reply {
+  margin-top: 14px;
+  padding: 12px;
+  background: var(--cream);
+  border-radius: 12px;
+  color: var(--text-mid);
+  font-size: 14px;
+  line-height: 1.7;
+  display: none;
+}
+
+#reply a { color: var(--burgundy); font-weight: 700; text-decoration: none; }
+#reply a:hover { text-decoration: underline; }
+
+/* ===== TOAST ===== */
+.toast {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  background: #2d7a4f;
+  color: white;
+  padding: 14px 24px;
+  border-radius: 14px;
+  font-size: 15px;
+  font-weight: 600;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+  transform: translateY(80px);
+  opacity: 0;
+  transition: all 0.4s ease;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.toast.show {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  .site-header { padding: 0 20px; }
+  .nav-links { display: none; }
+  .products { padding: 70px 20px; }
+  .faq { padding: 70px 20px; }
+  .about-section { padding: 70px 20px; }
+}
+
+
+  </style>
+</head>
+<body>
+
+<!-- HEADER -->
+
+<header class="site-header" id="siteHeader">
+
+```
+<img src="logo.jpg" alt="شعار إرث" class="logo">
+<div class="brand-text">
+  <h1>إرث</h1>
+  <p>متجر مستوحى من التراث السعودي</p>
+</div>
+```
+
+  </a>
+
+  <nav>
+    <ul class="nav-links">
+      <li><a href="#home">الرئيسية</a></li>
+      <li><a href="#products">المنتجات</a></li>
+      <li><a href="#faq">الأسئلة</a></li>
+      <li><a href="#about">من نحن</a></li>
+    </ul>
+  </nav>
+
+  <div class="header-actions">
+    <a href="cart.html" class="cart-link">
+      <i class="fa-solid fa-bag-shopping"></i>
+      <span id="cart-count">0</span>
+    </a>
+  </div>
+</header>
+
+<!-- HERO SLIDER -->
+
+<section class="hero" id="home">
+
+  <!-- الشرائح -->
+
+  <div class="slides-container">
+
+```
+<div class="slide active" style="background-image: url('heritage.jpg')">
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <span class="hero-badge">✦ هوية تراثية سعودية ✦</span>
+    <h2 class="hero-title">صُـــنِعَ<br>فــي السعوديــة</h2>
+    <p class="hero-subtitle">Made in Saudi Arabia</p>
+    <p class="hero-desc">في إرث نقدم منتجات مستوحاة من الثقافة السعودية بتصميم أنيق يعكس الأصالة.</p>
+    <a href="#products" class="hero-cta">تصفح المنتجات <i class="fa-solid fa-arrow-left"></i></a>
+  </div>
+</div>
+
+<div class="slide" style="background-image: url('fakhar.JPG')">
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <span class="hero-badge">✦ صناعة يدوية أصيلة ✦</span>
+    <h2 class="hero-title">من الطـيــن<br>إلى الفــن</h2>
+    <p class="hero-subtitle">Handcrafted Heritage</p>
+    <p class="hero-desc">كل قطعة تُصنع بيد حِرفية تعشق التراث وتُتقن التفاصيل.</p>
+    <a href="#products" class="hero-cta">اكتشف المنتجات <i class="fa-solid fa-arrow-left"></i></a>
+  </div>
+</div>
+
+<div class="slide" style="background-image: url('nakhl.JPG')">
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <span class="hero-badge">✦ حِرفة وإتقان ✦</span>
+    <h2 class="hero-title">الجمال<br>في التفاصيل</h2>
+    <p class="hero-subtitle">Crafted with Passion</p>
+    <p class="hero-desc">نؤمن أن الأصالة تبدأ من الشغف بالصنعة والحرص على الجودة.</p>
+    <a href="#products" class="hero-cta">تسوّق الآن <i class="fa-solid fa-arrow-left"></i></a>
+  </div>
+</div>
+```
+
+  </div>
+
+  <!-- نقاط التنقل -->
+
+  <div class="slider-dots">
+    <span class="dot active" onclick="(0)"></span>
+    <span class="dot" onclick="goToSlide(1)"></span>
+    <span class="dot" onclick="goToSlide(2)"></span>
+  </div>
+
+  <!-- أسهم -->
+
+  <button class="slider-arrow slider-prev" onclick="changeSlide(-1)">
+    <i class="fa-solid fa-chevron-right"></i>
+  </button>
+  <button class="slider-arrow slider-next" onclick="changeSlide(1)">
+    <i class="fa-solid fa-chevron-left"></i>
+  </button>
+
+  <div class="hero-scroll">
+    <i class="fa-solid fa-chevron-down"></i>
+  </div>
+</section>
+
+<!-- PRODUCTS -->
+
+<section class="products" id="products">
+  <div class="section-header">
+    <span class="section-label">مجموعتنا</span>
+    <h2 class="section-title">منتجاتنا</h2>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="products-grid">
+
+<div class="card" id="rahal">
+  <div class="card-img-wrap">
+    <img src="cop.JPG" alt="رحال">
+    <span class="card-badge">الأكثر مبيعاً</span>
+  </div>
+  <div class="card-body">
+    <h3>رحال</h3>
+    <p>كوب فخاري مستوحى من روح الترحال والتراث، منقوش بمعالم سعودية أصيلة.</p>
+    <div class="card-footer">
+      <div class="card-price"><span>ريال</span>180</div>
+      <button class="add-btn" onclick="addToCart('رحال', 180, 'cop.JPG', this)">
+        <i class="fa-solid fa-plus"></i> أضف للسلة
+      </button>
+    </div>
+  </div>
+</div>
+<div class="card" id="TEB">
+  <div class="card-img-wrap">
+    <img src="TEB.jpg" alt="طِيب">
+  </div>
+  <div class="card-body">
+    <h3>طِيب</h3>
+    <p>مبخرة خزفية مستوحاه من التراث السعودي</p>
+    <div class="card-footer">
+      <div class="card-price"><span>ريال</span>120</div>
+      <button class="add-btn" onclick="addToCart('طِيب', 120, 'TEB.jpg', this)">
+        <i class="fa-solid fa-plus"></i> أضف للسلة
+      </button>
+    </div>
+  </div>
+</div>
+<div class="card" id="nuzul">
+  <div class="card-img-wrap">
+    <img src="gift.jpg" alt="نُزل">
+    <span class="card-badge">هدية مميزة</span>
+  </div>
+  <div class="card-body">
+    <h3>نُزل</h3>
+    <p>صندوق هدايا مستوحى من كرم الضيافة السعودية، يجمع بين البساطة والفخامة.</p>
+    <div class="card-footer">
+      <div class="card-price"><span>ريال</span>220</div>
+      <button class="add-btn" onclick="addToCart('نُزل', 220, 'gift.jpg', this)">
+        <i class="fa-solid fa-plus"></i> أضف للسلة
+      </button>
+    </div>
+  </div>
+</div>
+
+<div class="card" id="fay">
+  <div class="card-img-wrap">
+    <img src="asis.JPG" alt="فيء">
+  </div>
+  <div class="card-body">
+    <h3>فيء</h3>
+    <p>أواني فخارية مزيّنة بالجمل، تضيف لمسة تراثية دافئة لأي مساحة.</p>
+    <div class="card-footer">
+      <div class="card-price"><span>ريال</span>150</div>
+      <button class="add-btn" onclick="addToCart('فيء', 150, 'asis.JPG', this)">
+        <i class="fa-solid fa-plus"></i> أضف للسلة
+      </button>
+    </div>
+  </div>
+</div>
+```
+
+  </div>
+</section>
+
+<!-- FAQ -->
+
+<section class="faq" id="faq">
+  <div class="section-header">
+    <span class="section-label">استفساراتك</span>
+    <h2 class="section-title">أسئلة عالبال</h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="faq-list">
+    <details>
+      <summary>هل يمكنني طلب منتج مخصص؟</summary>
+      <p>نعم، يمكن طلب بعض المنتجات بتصميم خاص حسب المتوفر.</p>
+    </details>
+    <details>
+      <summary>متى يصل الطلب؟</summary>
+      <p>عادة يصل الطلب خلال 3 إلى 5 أيام عمل.</p>
+    </details>
+    <details>
+      <summary>هل المنتجات مناسبة للهدايا؟</summary>
+      <p>نعم، منتجات إرث مناسبة للهدايا وتعكس الطابع السعودي الأصيل.</p>
+    </details>
+    <details>
+      <summary>كيف أتواصل مع المتجر؟</summary>
+      <p>يمكنك التواصل معنا من خلال قسم تواصل معنا في أسفل الصفحة.</p>
+    </details>
+  </div>
+</section>
+
+<!-- ABOUT -->
+
+<section class="about-section" id="about">
+  <div class="about-inner">
+    <div class="about-logo-wrap">
+      <img src="logo.jpg" alt="شعار إرث">
+    </div>
+
+```
+<h2 class="brand-name">إرث</h2>
+<p class="about-description">
+  إرث متجر سعودي مستوحى من التراث والأصالة،
+  نقدم منتجات تعكس الهوية السعودية بلمسة عصرية وحديثة
+  للمناسبات والهدايا.
+</p>
+
+<div class="social-icons">
+  <a href="#"><i class="fa-brands fa-instagram"></i></a>
+  <a href="#"><i class="fa-brands fa-tiktok"></i></a>
+</div>
+
+<div class="divider"></div>
+
+<h3 class="links-title">روابط مهمة</h3>
+<div class="important-links">
+  <a href="#products">المنتجات</a>
+  <a href="#faq">الأسئلة الشائعة</a>
+  <a href="#about">من نحن</a>
+  <a href="#home">الرئيسية</a>
+</div>
+
+<div class="divider"></div>
+
+<div class="contact-info">
+  <h3>تواصل معنا</h3>
+  <p>📞 +966500000000</p>
+  <p>✉️ erthstore@gmail.com</p>
+</div>
+```
+
+  </div>
+</section>
+
+<!-- FOOTER -->
+
+<footer>
+  <p>© 2026 جميع الحقوق محفوظة — <strong>متجر إرث</strong></p>
+</footer>
+
+<!-- CHAT BOT -->
+
+<button class="chat-btn" onclick="toggleChat()">🤖</button>
+
+<div class="chat-box" id="chatBox">
+  <div class="chat-header">
+    <span>🤖</span> مساعد إرث الذكي
+  </div>
+  <div class="chat-body">
+    <p class="bot-msg">مرحبًا 👋 أنا مساعد إرث</p>
+    <p class="bot-msg">كيف أقدر أساعدك؟</p>
+    <div class="chat-options">
+      <button onclick="showReply('products')">🛍 عرض المنتجات</button>
+      <button onclick="showReply('gift')">🎁 اقتراح هدية</button>
+      <button onclick="showReply('contact')">📞 التواصل معنا</button>
+    </div>
+    <div id="reply"></div>
+  </div>
+</div>
+
+<!-- TOAST -->
+
+<div class="toast" id="toast">
+  <i class="fa-solid fa-circle-check"></i>
+  <span id="toast-msg">تمت الإضافة للسلة</span>
+</div>
+
+<script>
+  // ===== SLIDER =====
+  let currentSlide = 0;
+  const slides = document.querySelectorAll('.slide');
+  const dots   = document.querySelectorAll('.dot');
+
+  const sliderContainer = document.querySelector('.slides-container');
+
+function goToSlide(n) {
+  currentSlide = (n + slides.length) % slides.length;
+  sliderContainer.style.transform = `translateX(${currentSlide * 100}%)`;
+  dots.forEach(d => d.classList.remove('active'));
+  dots[currentSlide].classList.add('active');
+}
+
+function changeSlide(dir) {
+  goToSlide(currentSlide + dir);
+}
+
+</script>
+
+<script>
+  // Header scroll effect
+  window.addEventListener('scroll', () => {
+    document.getElementById('siteHeader').classList.toggle('scrolled', window.scrollY > 30);
+  });
+
+  // Cart
+  let cart = JSON.parse(localStorage.getItem('cart')) || [];
+  document.getElementById('cart-count').textContent = cart.length;
+
+  function addToCart(name, price, image, btn) {
+    cart.push({ name, price, image, qty: 1 });
+    localStorage.setItem('cart', JSON.stringify(cart));
+    document.getElementById('cart-count').textContent = cart.length;
+
+    // Button feedback
+    const orig = btn.innerHTML;
+    btn.innerHTML = '<i class="fa-solid fa-check"></i> تمت الإضافة';
+    btn.classList.add('added');
+    btn.disabled = true;
+    setTimeout(() => {
+      btn.innerHTML = orig;
+      btn.classList.remove('added');
+      btn.disabled = false;
+    }, 2000);
+
+    // Toast
+    showToast('تمت إضافة ' + name + ' للسلة ✓');
+  }
+
+  function showToast(msg) {
+    const t = document.getElementById('toast');
+    document.getElementById('toast-msg').textContent = msg;
+    t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), 3000);
+  }
+
+  // Chat
+  function toggleChat() {
+    const box = document.getElementById('chatBox');
+    box.style.display = box.style.display === 'block' ? 'none' : 'block';
+  }
+
+  function showReply(type) {
+    const reply = document.getElementById('reply');
+    reply.style.display = 'block';
+
+    // إزالة أي تمييز سابق
+    document.querySelectorAll('.card.highlighted').forEach(c => c.classList.remove('highlighted'));
+
+    if (type === 'products') {
+      reply.innerHTML = 'لدينا: <a href="#rahal" onclick="highlightCard(\'rahal\')">رحال</a> ، <a href="#fay" onclick="highlightCard(\'fay\')">فيء</a> ، <a href="#nuzul" onclick="highlightCard(\'nuzul\')">نُزل</a>، <a href="#TEB" onclick="highlightCard(\'TEB\')">طِيب</a> ✨';
+    } else if (type === 'gift') {
+      reply.innerHTML = 'أنصحك بـ <a href="#nuzul" onclick="highlightCard(\'nuzul\')">نُزل</a> — مناسب جداً للهدايا 🎁';
+      setTimeout(() => highlightCard('nuzul'), 300);
+    } else if (type === 'contact') {
+      reply.innerHTML = 'تواصل معنا عبر <a href="#about">قسم التواصل</a> 📞';
+    }
+  }
+
+  function highlightCard(id) {
+    // إزالة أي تمييز سابق
+    document.querySelectorAll('.card.highlighted').forEach(c => c.classList.remove('highlighted'));
+    const card = document.getElementById(id);
+    if (!card) return;
+    card.classList.add('highlighted');
+    card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    // يزيل التمييز بعد 5 ثواني
+    setTimeout(() => card.classList.remove('highlighted'), 5000);
+  }
+</script>
+
+</body>
+</html>
